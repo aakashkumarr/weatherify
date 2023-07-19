@@ -4,8 +4,9 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Footer from '@/components/UI/Footer'
-import { Provider } from 'react-redux'
-import { store } from './store/store'
+import { Provider, useSelector } from 'react-redux'
+import { RootState, store } from './store/store'
+import { useEffect } from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -18,19 +19,28 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
   return (
-   
-<html lang="en">
+
+    <html lang="en">
+
       <Provider store={store}>
-      <body className={inter.className}>
-        <Nav />
-        {children}
-        <Footer />  
-        </body>
+        <Body>
+          <Nav />
+          {children}
+          <Footer />
+        </Body>
       </Provider>
-      
+
     </html>
-  
-    
+
+
   )
+}
+
+function Body({ children }: any) {
+
+  let theme = useSelector((state: RootState) => state.theme.theme)
+  useEffect(()=>{},[theme])
+  return <body className={`${inter.className} bg-${theme}-200`}>{children}</body>
 }

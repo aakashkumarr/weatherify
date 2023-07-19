@@ -2,7 +2,7 @@ import express from 'express'
 import {Server} from 'http'
 import next from 'next'
 import path from 'path'
-
+import IPRoute from './routes/ipdetails.route.mjs'
 let app = express()
 let server= Server(app)
 let dev = process.env.NODE_ENV!=='production'
@@ -15,6 +15,7 @@ nextApp.prepare().then(()=>{
 
     app.use(express.json())
     app.use(express.static('src'))
+    app.use('/api/ipdetails',IPRoute)
 
     app.all('*',(req,res)=>handle(req,res))
 

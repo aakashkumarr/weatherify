@@ -29,6 +29,6 @@ export default function WeatherIcon({icon,width,height}:{icon:string,width:any,h
 
     
     return <>
-    <Lottie width={width} height={height} animationData={myProp} />
+    <Lottie className='bg-gray-500 p-1 rounded-full'  animationData={myProp} />
     </>
 }

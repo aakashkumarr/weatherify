@@ -1,9 +1,14 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import WeatherReducer from '../features/weather/weatherSlice'
+import IPReducer from '../features/ip/IPSlice'
+import themeReducer from "../features/theme/themeSlice";
+
 export const store = configureStore({
     reducer:{
         weather:WeatherReducer,
+        ip:IPReducer,
+        theme:themeReducer
     }
 })
 
